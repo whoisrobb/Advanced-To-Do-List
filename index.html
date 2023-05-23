@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <section class="list-container" aria-expanded="true">
+        <img class="menu-close" src="/items/menu-close.png" alt="">
+        <h2>Tasks List</h2>
+        <ul class="task-list" data-lists></ul>
+
+        <form action="" data-new-list-form>
+            <input
+                type="text"
+                data-new-list-input
+                placeholder="+ Create new List">
+        </form>
+        
+        <button class="delete-list" data-delete-list-button>Delete List</button>
+        
+    </section>
+    <section class="task-container" data-list-display-container>
+        <img class="menu" src="/items/menu.png" alt="">
+        <div class="todo-header">
+            <h1 data-list-title></h1>
+        </div>
+
+
+        <div class="todo-body">
+        <form action="" data-new-task-form>
+            <input
+                class="add-task"
+                data-new-task-input
+                type="text"
+                placeholder="Add task..."
+            >
+        </form>
+            <div class="tasks" data-tasks>
+            </div>
+            
+        </div>
+    </section>
+    
+    <template id="task-template">
+        <div class="todo-task" tabindex="0">
+            <input type="checkbox">
+            <label></label>
+            <img class="del" src="/items/icon-cross.svg" alt="">
+        </div>
+    </template>
+  <script src="script.js"></script>
+</body>
+
+</html>

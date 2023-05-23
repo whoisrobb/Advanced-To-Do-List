@@ -1,0 +1,217 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  --white: rgb(247, 247, 247);
+  --text: rgb(19, 19, 19);
+  --active: rgb(44, 83, 255);
+  transition: all 200ms ease-in-out;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  overflow-y: hidden;
+  padding: 0.5rem;
+  background: var(--white);
+  color: var(--text);
+  font-family: "Josefin sans", sans-serif;
+}
+
+.list-container {
+  height: 97vh;
+  width: 25rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 3rem 1rem;
+  z-index: 5;
+  background-color: white;
+}
+.list-container .menu-close {
+  cursor: pointer;
+  width: 15px;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  display: none;
+}
+.list-container h2 {
+  margin: 1rem;
+}
+.list-container .delete-list {
+  margin: 1rem 0;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: var(--text);
+  color: var(--white);
+  font-family: "Josefin sans", sans-serif;
+  cursor: pointer;
+}
+.list-container .task-list {
+  max-height: 70%;
+  overflow-y: scroll;
+  width: 100%;
+}
+.list-container .task-list .item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 5px;
+  list-style: none;
+  cursor: pointer;
+}
+.list-container input {
+  width: 100%;
+  height: 2rem;
+  margin: 1.2rem 0;
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid var(--text);
+  padding: 1rem;
+}
+.list-container input::-moz-placeholder {
+  font-family: "Josefin sans", sans-serif;
+}
+.list-container input::placeholder {
+  font-family: "Josefin sans", sans-serif;
+}
+.list-container input:focus {
+  border-bottom: 1px solid var(--active);
+}
+
+.task-container {
+  height: 97vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.task-container .menu {
+  cursor: pointer;
+  width: 20px;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  display: none;
+}
+.task-container .todo-header, .task-container .todo-body {
+  width: 70%;
+}
+.task-container .todo-header {
+  padding: 2rem 1rem;
+}
+.task-container .todo-body form input {
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 0.7rem 1rem;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  margin: 1rem 0;
+  outline: none;
+  font-size: 18px;
+}
+.task-container .todo-body form input::-moz-placeholder {
+  font-family: "Josefin sans";
+}
+.task-container .todo-body form input::placeholder {
+  font-family: "Josefin sans";
+}
+.task-container .todo-body form input:focus {
+  border: 1px solid var(--active);
+}
+.task-container .todo-body .tasks .todo-task {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  margin: 5px;
+  position: relative;
+}
+.task-container .todo-body .tasks .todo-task .del {
+  display: none;
+}
+.task-container .todo-body .tasks .todo-task:focus > .del {
+  display: block;
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+.task-container .todo-body .tasks .todo-task label {
+  position: relative;
+}
+.task-container .todo-body .tasks .todo-task label::before {
+  content: "";
+  position: absolute;
+  background: var(--text);
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  transform: scale(0);
+  transform-origin: right;
+  transition: transform 300ms ease-in-out;
+}
+.task-container .todo-body .tasks .todo-task input[type=checkbox] {
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 1.2rem;
+  width: 1.2rem;
+  border: 1px solid var(--text);
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.task-container .todo-body .tasks .todo-task input[type=checkbox]:checked {
+  background: var(--text);
+  background-image: url(/items/icon-check.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.task-container .todo-body .tasks .todo-task input[type=checkbox]:checked + label {
+  opacity: 0.5;
+}
+.task-container .todo-body .tasks .todo-task input[type=checkbox]:checked + label::before {
+  transform: scale(1);
+  transform-origin: left;
+}
+
+.active-list {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 767px) {
+  body {
+    padding: 0;
+    width: 100vw;
+  }
+  body .list-container {
+    width: 100%;
+    position: absolute;
+    padding: 1rem;
+  }
+  body .list-container .menu-close {
+    display: block;
+  }
+  body .item {
+    margin: 10px 0;
+  }
+  body .task-container .todo-header, body .task-container .todo-body {
+    width: 90%;
+  }
+  body .task-container .menu {
+    display: block;
+  }
+  .list-container[aria-expanded=false] {
+    transform: translateX(-100%);
+  }
+}
